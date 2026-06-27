@@ -12,6 +12,7 @@ const FuncionarioForm = lazy(() => import("../pages/FuncionarioForm"));
 const ClienteList = lazy(() => import("../pages/ClienteList"));
 const ClienteForm = lazy(() => import("../pages/ClienteForm"));
 const ProdutoList = lazy(() => import("../pages/ProdutoList"));
+const ProdutoListPublic = lazy(() => import("../pages/ProdutoListPublic"));
 const ProdutoForm = lazy(() => import("../pages/ProdutoForm"));
 const Comandas = lazy(() => import("../pages/Comandas"));
 const Caixa = lazy(() => import("../pages/Caixa"));
@@ -27,7 +28,10 @@ const AppRoutes = () => {
             <Routes>
                 <Route path="/" element={<Navigate to="/login" replace />} />
 
-                <Route path="/produtos/publica" element={<ProdutoList />} />
+                <Route
+                    path="/produtos/publica"
+                    element={<ProdutoListPublic />}
+                />
 
                 <Route
                     path="/login"
@@ -47,6 +51,7 @@ const AppRoutes = () => {
                     }
                 />
 
+                {/* Funcionários */}
                 <Route
                     path="/funcionarios"
                     element={
@@ -66,6 +71,16 @@ const AppRoutes = () => {
                 />
 
                 <Route
+                    path="/funcionario/:opr/:id"
+                    element={
+                        <PrivateRoute>
+                            <FuncionarioForm />
+                        </PrivateRoute>
+                    }
+                />
+
+                {/* Clientes */}
+                <Route
                     path="/clientes"
                     element={
                         <PrivateRoute>
@@ -84,6 +99,16 @@ const AppRoutes = () => {
                 />
 
                 <Route
+                    path="/cliente/:opr/:id"
+                    element={
+                        <PrivateRoute>
+                            <ClienteForm />
+                        </PrivateRoute>
+                    }
+                />
+
+                {/* Produtos */}
+                <Route
                     path="/produtos"
                     element={
                         <PrivateRoute>
@@ -94,6 +119,15 @@ const AppRoutes = () => {
 
                 <Route
                     path="/produto"
+                    element={
+                        <PrivateRoute>
+                            <ProdutoForm />
+                        </PrivateRoute>
+                    }
+                />
+
+                <Route
+                    path="/produto/:opr/:id"
                     element={
                         <PrivateRoute>
                             <ProdutoForm />
